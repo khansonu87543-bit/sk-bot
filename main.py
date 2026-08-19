@@ -1,3 +1,6 @@
+pyrogram
+tgcrypto
+flask
 import asyncio
 try:
     asyncio.get_event_loop()
