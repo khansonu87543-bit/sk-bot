@@ -144,6 +144,8 @@ async def main_engine(client, message):
     if text.startswith("/start") or text.startswith("/help"):
         await message.reply_text("🔥 SK Ultimate Bot v10.0 (24/7 Active Mode)\nMusic, Chat, Protection - Everything is Online!")
         return
+import asyncio
+
 if __name__ == "__main__":
     try:
         keep_alive()
@@ -151,5 +153,7 @@ if __name__ == "__main__":
         pass
         
     print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
-    app.run()
-    
+    try:
+        asyncio.run(app.run())
+    except AttributeError:
+        app.run()
