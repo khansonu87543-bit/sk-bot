@@ -144,14 +144,7 @@ async def main_engine(client, message):
     if text.startswith("/start") or text.startswith("/help"):
         await message.reply_text("🔥 SK Ultimate Bot v10.0 (24/7 Active Mode)\nMusic, Chat, Protection - Everything is Online!")
         return
-
-    # 11. Auto-Reaction System# 11. Auto-Reaction System
-try:
-    await client.set_message_reaction(message.chat.id, message.id, "🔥")
-except:
-    pass
-
-# --- Start System properly with Event Loop ---
+        # --- Start System properly with Event Loop ---
 if __name__ == "__main__":
     try:
         keep_alive()
