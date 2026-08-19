@@ -154,11 +154,11 @@ if __name__ == "__main__":
     print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
     
     import asyncio
+    if __name__ == "__main__":
     try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        keep_alive()
+    except NameError:
+        pass
         
+    print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
     app.run()
-    
