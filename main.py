@@ -1,4 +1,4 @@
-import asyncio
+import async
 from pyrogram import Client, filters
 import random
 from flask import Flask
