@@ -3,6 +3,11 @@ try:
     asyncio.get_event_loop()
 except RuntimeError:
     loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)import asyncio
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     from pyrogram import Client, filters
 import asyncio
@@ -212,4 +217,21 @@ async def ultimate_bot_engine(client, message):
             await message.reply_text(random.choice(chat_replies))
 
 print("🚀 SK Ultimate Bot (Full Power + Instant Owner Links) is running live...")
-app.run()
+app.run()from flask import Flask
+from threading import Thread
+
+web_app = Flask('')
+
+@web_app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run_web():
+    web_app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run_web)
+    t.start()
+
+if __name__ == "__main__":
+    keep_alive()
