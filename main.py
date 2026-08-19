@@ -37,7 +37,7 @@ CHAT_RESPONSES = [
     "Acha ji! Aur batao, kya chal raha hai phir? 😄",
     "Sahi hai bhai! Main toh bas aap logo ki baatein sun raha hoon. 😎",
     "Waise aapki yeh baat mujhe kaafi interesting lagi! Kuch aur batao इसके बारे में। 🤔",
-    "Hahaha, kasam se aap bhi na kamaal ki baatein karte ho! 😆",
+    "Hahaha, kasam se aap bhi na kamaal ki baatein करते हो! 😆",
     "Main samajh gaya aapki baat. Batao phir aage kya plan hai? 👍"
 ]
 
@@ -137,23 +137,31 @@ async def main_engine(client, message):
         await message.reply_text("👑 Owners: t.me/SK_KING_CHILL / t.me/S_K_KI_NG\n📢 Channel: t.me/SK_Chatting_Club")
         return
 
-    if any(w in text for w in ["shayari", "poetry", "bore"]):
+            if any(w in text for w in ["shayari", "poetry", "bore"]):
         await message.reply_text(random.choice(POEMS))
         return
 
     if text.startswith("/start") or text.startswith("/help"):
         await message.reply_text("🔥 SK Ultimate Bot v10.0 (24/7 Active Mode)\nMusic, Chat, Protection - Everything is Online!")
         return
-import asyncio
 
+    # 11. Auto-Reaction System
+    try:
+        await client.set_message_reaction(chat_id=message.chat.id, message_id=message.id, emoji=random.choice(AVAILABLE_REACTIONS))
+    except: pass
+
+# --- Start System (Fixed for Render Environment) ---
 if __name__ == "__main__":
     try:
         keep_alive()
-    except NameError:
+    except Exception:
         pass
         
-    print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
+    print("🚀 SK Ultimate Bot: System status - 24/7 Active with Music & Chat!")
+    
     try:
-        asyncio.run(app.run())
-    except AttributeError:
+        app.run()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         app.run()
