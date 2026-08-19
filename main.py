@@ -145,13 +145,27 @@ async def main_engine(client, message):
         await message.reply_text("🔥 SK Ultimate Bot v10.0 (24/7 Active Mode)\nMusic, Chat, Protection - Everything is Online!")
         return
 
-    # 11. Auto-Reaction System
-    try:
-        await client.set_message_reaction(chat_id=message.chat.id, message_id=message.id, emoji=random.choice(AVAILABLE_REACTIONS))
-    except: pass
+    # 11. Auto-Reaction System# 11. Auto-Reaction System
+try:
+    await client.set_message_reaction(message.chat.id, message.id, "🔥")
+except:
+    pass
 
-# --- Start System ---
+# --- Start System properly with Event Loop ---
 if __name__ == "__main__":
-    keep_alive()
-    print("🚀 SK Ultimate Bot: System status - 24/7 Active with Music & Chat!")
+    try:
+        keep_alive()
+    except NameError:
+        pass
+        
+    print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
+    
+    import asyncio
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        
     app.run()
+    
