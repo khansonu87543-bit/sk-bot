@@ -1,4 +1,10 @@
-import async
+import asyncio
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
 from pyrogram import Client, filters
 import random
 from flask import Flask
@@ -37,7 +43,7 @@ CHAT_RESPONSES = [
     "Acha ji! Aur batao, kya chal raha hai phir? 😄",
     "Sahi hai bhai! Main toh bas aap logo ki baatein sun raha hoon. 😎",
     "Waise aapki yeh baat mujhe kaafi interesting lagi! Kuch aur batao इसके बारे में। 🤔",
-    "Hahaha, kasam se aap bhi na kamaal ki baatein करते हो! 😆",
+    "Hahaha, kasam se aap bhi na kamaal ki baatein karte ho! 😆",
     "Main samajh gaya aapki baat. Batao phir aage kya plan hai? 👍"
 ]
 
@@ -137,7 +143,7 @@ async def main_engine(client, message):
         await message.reply_text("👑 Owners: t.me/SK_KING_CHILL / t.me/S_K_KI_NG\n📢 Channel: t.me/SK_Chatting_Club")
         return
 
-            if any(w in text for w in ["shayari", "poetry", "bore"]):
+    if any(w in text for w in ["shayari", "poetry", "bore"]):
         await message.reply_text(random.choice(POEMS))
         return
 
@@ -150,18 +156,12 @@ async def main_engine(client, message):
         await client.set_message_reaction(chat_id=message.chat.id, message_id=message.id, emoji=random.choice(AVAILABLE_REACTIONS))
     except: pass
 
-# --- Start System (Fixed for Render Environment) ---
+# --- Start System ---
 if __name__ == "__main__":
     try:
         keep_alive()
     except Exception:
         pass
         
-    print("🚀 SK Ultimate Bot: System status - 24/7 Active with Music & Chat!")
-    
-    try:
-        app.run()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        app.run()
+    print("🚀 SK Ultimate Bot: System status - 24/7 Active!")
+    app.run()
